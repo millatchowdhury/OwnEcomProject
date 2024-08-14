@@ -15,3 +15,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [FrontendProductController::class, 'index'])->name('all.product');
+
+
+
