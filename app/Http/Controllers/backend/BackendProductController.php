@@ -7,5 +7,7 @@ use Illuminate\Http\Request;
 
 class BackendProductController extends Controller
 {
-    //
+    public function createProduct(){
+        return view('backend.pages.product.create');
+    }
 }
