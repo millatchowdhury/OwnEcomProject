@@ -1,20 +1,20 @@
 <?php
 
+use App\Http\Controllers\backend\BackendProductController;
+use App\Http\Controllers\backend\DashboardController;
 use App\Http\Controllers\frontend\FrontendProductController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
+// Front End 
 Route::get('/', [FrontendProductController::class, 'index'])->name('all.product');
 
 
+
+
+
+// Back End 
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+
+Route::get('/create-product', [BackendProductController::class, 'createProduct'])->name('create.product');
 
