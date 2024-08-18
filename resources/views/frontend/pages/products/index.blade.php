@@ -11,10 +11,10 @@
                   @php
                     $i = 1;
                   @endphp
-                  
+
                   @foreach($product->images as $image)
                     @if ($i > 0)
-                    <img src="{{ asset('frontend/assets/img/'.$image->image) }}" class="card-img-top" alt="...">
+                    <img src="{{ asset('storage/images/'.$image->image) }}" class="card-img-top" alt="...">
                     @endif
                     @php
                       $i--;

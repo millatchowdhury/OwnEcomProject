@@ -15,7 +15,7 @@
         </a>
         <div class="collapse" id="ui-basic">
           <ul class="nav flex-column sub-menu">
-              <li class="nav-item"> <a class="nav-link" href="">Manage Product</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{ route('manage.product') }}">Manage Product</a></li>
             <li class="nav-item"> <a class="nav-link" href="{{ route('create.product') }}">Create Product</a></li>
             <li class="nav-item"> <a class="nav-link" href="">Typography</a></li>
           </ul>
