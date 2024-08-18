@@ -5,7 +5,7 @@
       <div class="card-body">
         <h4 class="card-title">Create New Products</h4>
         
-        <form class="forms-sample" method="POST" action="{{ route('product.store') }}" enctype="multipart/form-data">
+        <form class="forms-sample" method="POST" action="{{ route('update.product', $product->id) }}" enctype="multipart/form-data">
           @csrf
           @if ($errors->any())
               <div class="alert alert-danger" id="alDanger">
@@ -19,29 +19,26 @@
                   </ul>
               </div>
           @endif
+          {{ $product }}
           <div class="form-group">
             <label for="exampleInputName1">Title</label>
-            <input type="text" class="form-control" name="title" id="exampleInputName1" placeholder="Title">
+            <input type="text" class="form-control" name="title" value="{{ $product->title }}" id="exampleInputName1" placeholder="Title">
           </div>
           <div class="form-group">
             <label for="exampleInputEmail3">Description</label>
-            <textarea type="text" class="form-control" name="description" id="exampleInputEmail3" placeholder="Description"></textarea>
+            <textarea type="text" class="form-control" name="description"  id="exampleInputEmail3" placeholder="Description">{{ $product->description }}</textarea>
           </div>
           <div class="form-group">
             <label for="exampleInputEmail3">Quantity</label>
-            <textarea type="text" class="form-control" name="quantity" id="exampleInputEmail3" placeholder="Quantity"></textarea>
+            <input type="text" class="form-control" name="quantity" value="{{ $product->quantity }}" id="exampleInputEmail3" placeholder="Quantity">
           </div>
           <div class="form-group">
             <label for="exampleInputEmail3">Price</label>
-            <textarea type="text" class="form-control" name="price" id="exampleInputEmail3" placeholder="Price"></textarea>
+            <input type="text" class="form-control" name="price" value="{{ $product->price }}" id="exampleInputEmail3" placeholder="Price">
           </div>
           
           
-          {{-- <div class="form-group">
-            <label>File upload</label>
-            <input type="file" name="product_image" class="file-upload-default" placeholder="select image">
-            
-          </div> --}}
+          
           <input type="file" name="product_image[]" class="file-upload-default" placeholder="select image">
           <input type="file" name="product_image[]" class="file-upload-default" placeholder="select image">
           <input type="file" name="product_image[]" class="file-upload-default" placeholder="select image">
@@ -52,10 +49,7 @@
       </div>
     </div>
   </div>
-  <script>
-   function myCloseFunction(){
-    document.getElementById("alDanger").style.display= 'none';
-  }
-  </script>
+
+
 @endsection
     
