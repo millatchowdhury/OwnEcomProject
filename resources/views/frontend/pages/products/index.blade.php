@@ -33,4 +33,7 @@
         
     </div>
 </div>
+{{-- <div class="pagination">
+  {{ $product->links() }}
+</div> --}}
 @endsection

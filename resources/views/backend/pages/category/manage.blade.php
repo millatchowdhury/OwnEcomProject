@@ -33,7 +33,9 @@
               <td>{{ $category->description }}</td>
               <td><img src="{{ asset('storage/images/'.$category->image) }}" width="150" alt=""></td>
               
-              <td><a class="btn btn-primary" href="{{ route('edit.category', $category->id) }}">Edit</a> | Delete
+              <td><a class="btn btn-primary" href="{{ route('edit.category', $category->id) }}">Edit</a> | 
+              <td><a class="btn btn-primary" href="{{ route('delete.category', $category->id) }}">Delete</a> | 
+                
 
                   {{-- <a class="btn btn-primary" href="{{ route('edit.product', $product->id) }}">Edit</a>
                   <!-- Button trigger modal -->

@@ -68,4 +68,24 @@ class BackendCategoryController extends Controller
         
     }
 
+    public function deleteCategory($id){
+        $category = Category::find($id);
+        if(!is_null($category)){
+            // Delete sub category 
+           $subCategory = Category::orderBy('name', 'desc')->where('parent_id', $category->id)->get();
+           foreach($subCategory as $sub){
+            if(File::exists('storage/images/'.$sub->image)){
+                File::delete('storage/images/'.$sub->image);
+            }
+            $sub->delete();
+           }
+           
+        }
+        if(File::exists('storage/images/'.$category->image)){
+            File::delete('storage/images/'.$category->image);
+        }
+        $category->delete();
+        return redirect()->route('manage.category');
+    }
+
 }

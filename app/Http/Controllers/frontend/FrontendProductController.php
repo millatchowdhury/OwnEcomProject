@@ -10,7 +10,7 @@ class FrontendProductController extends Controller
 {
     public function index(){
         // $products = Product::with('images')->get();
-        $products = Product::orderBy('id', 'desc')->get();
+        $products = Product::orderBy('id', 'desc')->paginate(1);
          
         return view('frontend.pages.products.index', compact('products'));
     }
