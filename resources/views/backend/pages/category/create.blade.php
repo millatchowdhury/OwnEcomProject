@@ -36,8 +36,6 @@
             <textarea type="text" class="form-control" name="description" id="exampleInputEmail3" placeholder="Description"></textarea>
           </div>
           
-          
-          
           <div class="">
             <label>File upload</label>
             <input type="file" name="categoryImage" class="file-upload-default" placeholder="select cat image">
