@@ -70,6 +70,10 @@
           @endforeach
           </tbody>
         </table>
+        <div class="pagination">
+          {{ $allCategories->links() }}
+        </div>
+        
        </div>
       </div>
     </div>

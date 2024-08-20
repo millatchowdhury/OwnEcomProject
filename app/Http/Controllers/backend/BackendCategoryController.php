@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class BackendCategoryController extends Controller
 {
     public function manageCategory(){
-        $allCategories = Category::orderBy('id', 'desc')->get();
+        $allCategories = Category::orderBy('id', 'desc')->paginate(2);
         return view('backend.pages.category.manage', compact('allCategories'));
     }
 
