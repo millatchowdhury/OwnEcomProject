@@ -32,6 +32,7 @@ Route::group(['prefix' => '/admin'], function(){
         Route::post('/store-category', [BackendCategoryController::class, 'storeCategory'])->name('store.category');
         Route::get('/edit-category{id}', [BackendCategoryController::class, 'editCategory'])->name('edit.category');
         Route::post('/update-category/{id}', [BackendCategoryController::class, 'updateCategory'])->name('update.category');
+        Route::get('/delete-category/{id}', [BackendCategoryController::class, 'deleteCategory'])->name('delete.category');
     });
 });
 
