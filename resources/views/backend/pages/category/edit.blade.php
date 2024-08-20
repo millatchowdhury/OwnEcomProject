@@ -5,7 +5,7 @@
       <div class="card-body">
         <h4 class="card-title">Create New Products</h4>
         
-        <form class="forms-sample" method="POST" action="{{ route('update.product', $product->id) }}" enctype="multipart/form-data">
+        <form class="forms-sample" method="POST" action="{{ route('update.category', $category->id) }}" enctype="multipart/form-data">
           @csrf
           @if ($errors->any())
               <div class="alert alert-danger" id="alDanger">
@@ -19,29 +19,34 @@
                   </ul>
               </div>
           @endif
-          {{ $product }}
           <div class="form-group">
-            <label for="exampleInputName1">Title</label>
-            <input type="text" class="form-control" name="title" value="{{ $product->title }}" id="exampleInputName1" placeholder="Title">
+            <label for="exampleInputName1">Category Name</label>
+            <input type="text" class="form-control" name="name" id="exampleInputName1" value="{{ $category->name }}">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputName1">Parent Category</label>
+            <Select class="form-control" name="parent_id_Select_CustomId">
+              
+              @foreach ($mainCategories as $cat)
+                <option value="{{ $cat->id }}"{{ $cat->id == $category->parent_id ? 'selected' : '' }}>{{ $cat->name }}</option>
+              @endforeach
+            </Select>
           </div>
           <div class="form-group">
             <label for="exampleInputEmail3">Description</label>
-            <textarea type="text" class="form-control" name="description"  id="exampleInputEmail3" placeholder="Description">{{ $product->description }}</textarea>
+            <textarea type="text" class="form-control" name="description" id="exampleInputEmail3" >{{ $category->description }}</textarea>
           </div>
+          
           <div class="form-group">
-            <label for="exampleInputEmail3">Quantity</label>
-            <input type="text" class="form-control" name="quantity" value="{{ $product->quantity }}" id="exampleInputEmail3" placeholder="Quantity">
-          </div>
-          <div class="form-group">
-            <label for="exampleInputEmail3">Price</label>
-            <input type="text" class="form-control" name="price" value="{{ $product->price }}" id="exampleInputEmail3" placeholder="Price">
+            <label for="">Old Image</label>
+            <img src="{{ asset('storage/images/'.$category->image) }}" alt="">
           </div>
           
+          <div class="">
+            <label>File upload</label>
+            <input type="file" name="categoryImage" class="file-upload-default" placeholder="select cat image">
+          </div>
           
-          
-          <input type="file" name="product_image[]" class="file-upload-default" placeholder="select image">
-          <input type="file" name="product_image[]" class="file-upload-default" placeholder="select image">
-          <input type="file" name="product_image[]" class="file-upload-default" placeholder="select image">
 
           <button type="submit" class="btn btn-primary me-2">Submit</button>
           <button class="btn btn-light">Cancel</button>
@@ -49,7 +54,10 @@
       </div>
     </div>
   </div>
-
-
+  <script>
+   function myCloseFunction(){
+    document.getElementById("alDanger").style.display= 'none';
+  }
+  </script>
 @endsection
     
