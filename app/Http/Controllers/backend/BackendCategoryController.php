@@ -4,6 +4,7 @@ namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 
 class BackendCategoryController extends Controller
@@ -30,13 +31,41 @@ class BackendCategoryController extends Controller
             $category->image = $imageName;
             $category->save();
         }
-
         // Category::create([
         //     'name' => $request->name,
         //     'parent_id' => $request->parent_id_Select_CustomId,
         //     'description' => $request->description
         // ]);
         return redirect()->route('manage.category');
+    }
+
+    public function editCategory($id){
+        $category = Category::find($id);
+        $mainCategories = Category::orderBy('id', 'desc')->where('parent_id', NULL)->get();
+        if(!is_null($category)){
+            return view('backend.pages.category.edit', compact('category', 'mainCategories'));
+        }else{
+            return redirect()->route('manage.category');
+        }
+    }
+
+    public function updateCategory(Request $request, $id){
+        $category = Category::find($id);
+        $category->name = $request->name;
+        $category->description = $request->description;
+        $category->parent_id = $request->parent_id_Select_CustomId;
+        // old image delete 
+        if(File::exists("storage/images/".$category->image)){
+            File::delete("storage/images/".$category->image);
+
+            $img = $request->file('categoryImage');
+            $imageName = time().uniqid().'.'.$img->getClientOriginalExtension();
+            $request->file('categoryImage')->storeAs('images', $imageName, 'public');
+            $category->image = $imageName;
+        }
+        $category->save();
+        return redirect()->route('manage.category');
+        
     }
 
 }

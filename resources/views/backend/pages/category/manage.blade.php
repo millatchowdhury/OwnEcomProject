@@ -33,7 +33,8 @@
               <td>{{ $category->description }}</td>
               <td><img src="{{ asset('storage/images/'.$category->image) }}" width="150" alt=""></td>
               
-              <td>Edit|Delete
+              <td><a class="btn btn-primary" href="{{ route('edit.category', $category->id) }}">Edit</a> | Delete
+
                   {{-- <a class="btn btn-primary" href="{{ route('edit.product', $product->id) }}">Edit</a>
                   <!-- Button trigger modal -->
 <a type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal{{$product->id}}">
