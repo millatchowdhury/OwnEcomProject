@@ -14,4 +14,9 @@ class FrontendProductController extends Controller
          
         return view('frontend.pages.products.index', compact('products'));
     }
+
+    public function productDetails($slug){
+        $product = Product::where('slug', $slug)->first();
+        return view('frontend.pages.products.product_details', compact('product'));
+    }
 }
