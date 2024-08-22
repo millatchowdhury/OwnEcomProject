@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 
 // Front End 
 Route::get('/', [FrontendProductController::class, 'index'])->name('all.product');
+Route::get('/details-product/{slug}', [FrontendProductController::class, 'productDetails'])->name('details.product');
 
 
 
