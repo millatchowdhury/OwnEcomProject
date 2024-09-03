@@ -7,7 +7,7 @@ use App\Models\Product;
 use App\Models\ProductImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-
+use Illuminate\Support\Facades\Session;
 use function PHPUnit\Framework\isNull;
 
 class BackendProductController extends Controller
@@ -28,8 +28,8 @@ class BackendProductController extends Controller
         $product->description = $request->description;
         $product->quantity = $request->quantity;
         $product->price = $request->price;
-        $product->category_id = 1;
-        $product->brand_id = 1;
+        $product->category_id = $request->category_id;
+        $product->brand_id = $request->brand_id;
         $product->slug = Str::slug($request->title, '-');
         $product->offer_price = 0;
         $product->admin_id = 1;

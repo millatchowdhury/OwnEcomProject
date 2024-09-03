@@ -11,32 +11,22 @@
         <table class="table table-striped">
           <thead>
             <tr>
-              <th scope="col">Category Name</th>
-              <th scope="col">Parent Category</th>
+              <th scope="col">Brand Name</th>
               <th scope="col">Description</th>
               <th scope="col">Image</th>
-              
               <th scope="col">Action</th>
             </tr>
           </thead>
           <tbody>
-          @foreach($allCategories as $category)
+          @foreach($brands as $brand)
             <tr>
-              <td>{{ $category->name }}</td>
-
+              <td>{{ $brand->name }}</td>
+              <td>{{ $brand->description }}</td>
+              <td><img src="{{ asset('storage/images/'.$brand->image) }}" width="150" alt=""></td>
               
-              <td>
-                @if ($category->parent_id == NULL)
-                Primary Category
-                @else
-                {{ $category->parent->name }}
-                @endif
-              </td>
-              <td>{{ $category->description }}</td>
-              <td><img src="{{ asset('storage/images/'.$category->image) }}" width="150" alt=""></td>
               
-              <td><a class="btn btn-primary" href="{{ route('edit.category', $category->id) }}">Edit</a> | 
-              <td><a class="btn btn-primary" href="{{ route('delete.category', $category->id) }}">Delete</a> | 
+              <td><a class="btn btn-primary" href="{{ route('edit.brand', $brand->id) }}">Edit</a> | 
+              <td><a class="btn btn-primary" href="{{ route('delete.brand', $brand->id) }}">Delete</a> | 
                 
 
                   {{-- <a class="btn btn-primary" href="{{ route('edit.product', $product->id) }}">Edit</a>
@@ -72,9 +62,7 @@
           @endforeach
           </tbody>
         </table>
-        <div class="pagination">
-          {{ $allCategories->links() }}
-        </div>
+        
         
        </div>
       </div>

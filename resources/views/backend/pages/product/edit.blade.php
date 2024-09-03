@@ -36,8 +36,32 @@
             <label for="exampleInputEmail3">Price</label>
             <input type="text" class="form-control" name="price" value="{{ $product->price }}" id="exampleInputEmail3" placeholder="Price">
           </div>
-          
-          
+          <div class="form-group">
+            <label for="exampleInputEmail3">Select A Category</label>
+            <select name="category_id" id="" class="form-control">
+                <option value="">Please Select a Category</option>
+              @foreach (App\Models\Category::orderBy('name', 'asc')->where('parent_id', Null)->get() as $parent){
+                <option value="{{ $parent->id }}">{{ $parent->name }}</option>
+                @foreach (App\Models\Category::orderBy('name', 'asc')->where('parent_id', $parent->id)->get() as $child){
+                  <option value="{{ $child->id }}" {{ $child->id == $product->category->id ? 'selected' : '' }}>--{{ $child->name }}</option>
+                }
+                  
+                @endforeach
+              }
+                
+              @endforeach
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail3">Select A Brand</label>
+            <select name="brand_id" id="" class="form-control">
+                <option value="">Please Select A Brand</option>
+              @foreach (App\Models\Brand::orderBy('name', 'asc')->get() as $brand){
+                <option value="{{ $brand->id }}" {{ $brand->id == $product->brand->id ? 'selected' : ''}} >{{ $brand->name }}</option>
+              }
+              @endforeach
+            </select>
+          </div>
           
           <input type="file" name="product_image[]" class="file-upload-default" placeholder="select image">
           <input type="file" name="product_image[]" class="file-upload-default" placeholder="select image">

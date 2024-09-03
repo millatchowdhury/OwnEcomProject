@@ -15,7 +15,7 @@
                 @endphp
                 @foreach ($product->images as $image)
                 <div class="carousel-item {{ $i == 0 ? 'active' : '' }}">
-                    <img src="{{ asset('storage/images/'.$image->image) }}" class="d-block w-100" alt="{{ $product->title }}">
+                    <img src="{{ asset('storage/images/'.$image->image) }}" class="d-block w-100" alt="">
                     
                   </div>
                   @php
@@ -25,6 +25,11 @@
               
               
             </div>
+            <h3 class="btn btn-primary">{{ $product->title }}</h3>
+            <p>{{ $product->description }}</p>
+
+            <button class="btn btn-danger">{{ $product->category->name }} Category</button>
+            <button class="btn btn-danger">{{ $product->brand->name }} Brand</button>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
               <span class="carousel-control-prev-icon" aria-hidden="true"></span>
               <span class="visually-hidden">Previous</span>
